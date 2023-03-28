@@ -7,6 +7,18 @@
 
     FloatLayout:
         cols:1
+        size_hint: 1, 1
+        
+        # Add Image to top of screen 
+        Image:
+            keep_ratio: False
+            source: 'ccalogo.png'
+            allow_stretch: True
+            size_hint_x: 1
+            padding: 0
+            #size_hint: None, None
+            #size: 400, 90
+            pos_hint: {'left':1, 'top':1}
 
         FloatLayout:
             size: root.width, root.height/2
