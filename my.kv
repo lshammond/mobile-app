@@ -6,22 +6,24 @@
     password: passw
 
     FloatLayout:
-        cols:1
-        size_hint: 1, 1
-        
-        # Add Image to top of screen 
-        Image:
-            keep_ratio: False
-            source: 'ccalogo.png'
-            allow_stretch: True
-            size_hint_x: 1
+        RelativeLayout:
+            pos_hint: {"x":0, "top":1}
             padding: 0
-            #size_hint: None, None
-            #size: 400, 90
-            pos_hint: {'left':1, 'top':1}
+            size: root.width, root.height/2
+
+            # Add Image to top of screen
+            Image:
+                keep_ratio: False
+                source: 'images/ccalogo.png'
+                allow_stretch: True
+                size_hint_x: 1
+                size_hint: 0.5, 0.5
+                pos_hint: {'x': 0.25, 'top': 1}
 
         FloatLayout:
+            cols: 2
             size: root.width, root.height/2
+            pos_hint: {"x":0, "top": 0.9}
 
             Label:
                 text: "Create an Account"
@@ -70,8 +72,8 @@
                 font_size: (root.width**2 + root.height**2) / 14**4
 
         Button:
-            pos_hint:{"x":0.3,"y":0.25}
-            size_hint: 0.4, 0.1
+            pos_hint:{"x":0.3,"y":0.18}
+            size_hint: 0.4, 0.08
             font_size: (root.width**2 + root.height**2) / 17**4
             text: "Already have an Account? Log In"
             on_release:
@@ -80,7 +82,7 @@
 
         Button:
             pos_hint:{"x":0.2,"y":0.05}
-            size_hint: 0.6, 0.15
+            size_hint: 0.6, 0.12
             text: "Submit"
             font_size: (root.width**2 + root.height**2) / 14**4
             on_release:
