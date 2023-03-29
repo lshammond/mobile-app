@@ -97,7 +97,14 @@
     password: password
 
     FloatLayout:
-
+        # Add Image to top of screen
+        Image:
+            keep_ratio: False
+            source: 'images/ccalogo.png'
+            allow_stretch: True
+            size_hint_x: 1
+            size_hint: 0.5, 0.5
+            pos_hint: {'x': 0.25, 'top': 1}
         Label:
             text:"Email: "
             font_size: (root.width**2 + root.height**2) / 13**4
