@@ -9,7 +9,9 @@
         cols:1
 
         FloatLayout:
+            cols: 2
             size: root.width, root.height/2
+            pos_hint: {"x":0, "top": 0.9}
 
             Label:
                 text: "Create an Account"
@@ -58,8 +60,8 @@
                 font_size: (root.width**2 + root.height**2) / 14**4
 
         Button:
-            pos_hint:{"x":0.3,"y":0.25}
-            size_hint: 0.4, 0.1
+            pos_hint:{"x":0.3,"y":0.18}
+            size_hint: 0.4, 0.08
             font_size: (root.width**2 + root.height**2) / 17**4
             text: "Already have an Account? Log In"
             on_release:
@@ -68,7 +70,7 @@
 
         Button:
             pos_hint:{"x":0.2,"y":0.05}
-            size_hint: 0.6, 0.15
+            size_hint: 0.6, 0.12
             text: "Submit"
             font_size: (root.width**2 + root.height**2) / 14**4
             on_release:
@@ -84,7 +86,14 @@
     my_coords: my_coords
 
     FloatLayout:
-
+        # Add Image to top of screen
+        Image:
+            keep_ratio: False
+            source: 'images/ccalogo.png'
+            allow_stretch: True
+            size_hint_x: 1
+            size_hint: 0.5, 0.5
+            pos_hint: {'x': 0.25, 'top': 1}
         Label:
             text:"GPS Coords:"
             font_size: (root.width**2 + root.height**2) / 13**4
@@ -151,7 +160,6 @@
     created:created
 
     FloatLayout:
-
         Image:
             keep_ratio: True
             source: 'images/ccalogo.png'
