@@ -7,6 +7,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from database import DataBase
 from kivy.uix.image import Image, AsyncImage
+from plyer import gps
   
 class CreateAccountWindow(Screen):
     namee = ObjectProperty(None)
@@ -39,6 +40,7 @@ class CreateAccountWindow(Screen):
 class LoginWindow(Screen):
     email = ObjectProperty(None)
     password = ObjectProperty(None)
+    my_coords = ObjectProperty(None)
 
     def loginBtn(self):
         if db.validate(self.email.text, self.password.text):
@@ -55,6 +57,13 @@ class LoginWindow(Screen):
     def reset(self):
         self.email.text = ""
         self.password.text = ""
+        self.my_coords.text = ""
+
+    def update_gps_display(self, *args):
+        try:
+            self.my_coords.text = "lat: {lat}, lon: {lon}".format(**gps.location)
+        except AttributeError:
+            self.my_coords.text = "GPS unavailable"
 
 
 class MainWindow(Screen):
@@ -105,6 +114,22 @@ sm.current = "login"
 
 
 class MyMainApp(App):
+    def on_start(self):
+        try:
+            gps.configure(on_location=self.on_location)
+            gps.start()
+            sm.current.update_gps_display()
+        except NotImplementedError:
+            print("GPS is not implemented on this platform")
+
+    # each time the device reports a new location, this method is called        
+    def on_location(self, **kwargs):
+        kwargs['lat'] = 38.74
+        kwargs['lon'] = -77.0
+        print(kwargs)
+        sm.current.update_gps_display()
+       
+        
     def build(self):
         return sm
 
